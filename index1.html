@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Interface</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f5f7;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .product-card {
+            display: flex;
+            background: #fff;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            max-width: 950px;
+            gap: 40px;
+        }
+
+        .image-gallery {
+            flex: 1;
+        }
+
+        #mainImg {
+            width: 100%;
+            border-radius: 12px;
+        }
+
+        .thumbs {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .thumbs img {
+            width: 90px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .thumbs img:hover {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            flex: 1.2;
+        }
+
+        .product-info h1 {
+            margin: 0;
+            font-size: 28px;
+            color: #333;
+        }
+
+        .description {
+            margin: 10px 0 20px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .price span {
+            font-size: 28px;
+            font-weight: bold;
+            color: #222;
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .quantity-control button {
+            background: #ddd;
+            border: none;
+            padding: 10px 15px;
+            font-size: 20px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .quantity-control input {
+            width: 60px;
+            text-align: center;
+            padding: 8px;
+            font-size: 18px;
+        }
+
+        .add-btn {
+            width: 100%;
+            padding: 15px;
+            background: #2a7efc;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background .2s;
+        }
+
+        .add-btn:hover {
+            background: #1459c3;
+        }
+
+        .added-message {
+            display: none;
+            margin-top: 12px;
+            color: #2ecc71;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+<a href="index.html"><b>←</b></a>
+    <div class="container">
+        <div class="product-card">
+
+            <!-- Left: Image -->
+            <div class="image-gallery">
+                <img id="mainImg" src="product.1.jpg" alt="Product">
+
+                <div class="thumbs">
+                    <img onclick="changeImage(this.src)" src="https://via.placeholder.com/400" alt="">
+                    <img onclick="changeImage(this.src)" src="https://via.placeholder.com/401" alt="">
+                    <img onclick="changeImage(this.src)" src="https://via.placeholder.com/402" alt="">
+                </div>
+            </div>
+
+            <!-- Right: Info -->
+            <div class="product-info">
+                <h1>Intelligent book</h1>
+                <p class="description">Intelligenve Audio Book For Kids, Tap And Play, Audio Learning, Touch And Learn
+                    Many Things Easily (NEW EDITION)</p>
+
+                <div class="price">
+                    <span>₹500</span>
+                </div>
+
+                <div class="quantity-control">
+                    <button onclick="updateQty(-1)">−</button>
+                    <input id="qty" type="number" value="1" min="1">
+                    <button onclick="updateQty(1)">+</button>
+                </div>
+
+                <button class="add-btn" onclick="addToCart()">Add to Cart</button>
+                <p class="added-message" id="addedMsg">✔ Added to cart</p><br><br><br><br>
+                <h1>Product Highlights</h1>
+
+                <p>Language <br>
+                    English  <br>
+
+                    Reading Age <br>
+                    2 - 5 Years <br>
+
+                    Publish Year <br>
+                    2019         <br>
+
+                    Book Format <br>
+                    Audiobook  <br>
+
+                    Genre  <br>
+                    Children's & Young Adult <br>
+
+                    Pages <br>
+                    11-50 Pages <br>
+
+                    Sub Genre <br>
+                    Alphabets Books <br>
+
+                    Publisher <br>
+                    NA <br>
+
+                    Net Quantity (N) <br>
+                    1  <br>
+
+                    Book Title <br>
+                    LEARNING BOOK <br>
+
+                    Generic Name <br>
+                    Kids Early Learning books <br>
+
+                    Country of Origin  <br>
+                    India <br>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function changeImage(src) {
+            document.getElementById("mainImg").src = src;
+        }
+
+        function updateQty(amount) {
+            let qty = document.getElementById("qty");
+            let value = parseInt(qty.value) + amount;
+            if (value < 1) value = 1;
+            qty.value = value;
+        }
+
+        function addToCart() {
+            const msg = document.getElementById("addedMsg");
+
+            msg.style.display = "block";
+            msg.style.opacity = "1";
+
+            setTimeout(() => {
+                msg.style.opacity = "0";
+                setTimeout(() => msg.style.display = "none", 300);
+            }, 1200);
+        }
+
+    </script>
+</body>
+
+</html>
